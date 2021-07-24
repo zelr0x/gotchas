@@ -36,28 +36,21 @@ func main() {
 }
 
 func kindaOk() {
-	test(1, 5)
+	x := [...]int{1, 2, 3, 4, 5}
+	test(1, 5, x[:])
 }
 
 func wtf() {
-	test(1, 3)
+	x := [...]int{1, 2, 3, 4, 5}
+	test(1, 3, x[:])
 }
 
 func wtf2() {
 	x := [...]int{1, 2, 3, 4, 5, 6}
-	y := x[1:5]
-	fmt.Println(cap(y))
-	fmt.Println(y)
-	y[0] = 100
-	fmt.Println(cap(y))
-	z := append(y, 1000)
-	fmt.Println(cap(z))
-	z[0] = 5000
-	fmt.Printf("x = %v,\ty = %v,\tz = %v\n", x[1], y[0], z[0])
+	test(1, 5, x[:])
 }
 
-func test(begin, end uintptr) {
-	x := [...]int{1, 2, 3, 4, 5}
+func test(begin, end uintptr, x []int) {
 	y := x[begin:end]
 	fmt.Println(cap(y))
 	fmt.Println(y)
